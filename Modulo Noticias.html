@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo de Noticias</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #E8F5E9;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(270deg, #2E7D32, #66BB6A, #43A047);
+    background-size: 600% 600%;
+    animation: moverGradiente 8s ease infinite;
+    color: white;
+    padding: 25px;
+}
+
+@keyframes moverGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fecha {
+    font-family: Consolas, monospace;
+    font-size: 15px;
+}
+
+.titulo-principal {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* CONTENEDOR */
+.main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* TARJETAS */
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+.noticia-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+}
+
+.noticia-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.noticia-info {
+    padding: 18px;
+}
+
+.noticia-info h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1B5E20;
+}
+
+.noticia-info p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background: #2E7D32;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #1B5E20;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="top">
+            <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Panel de Control.html" class="volver">⬅ Volver</a>
+        <div class="fecha" id="fechaHora"></div>
+
+        <div class="menu-top">
+            <button onclick="toggleDark()">🌙</button>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="noticias-grid">
+
+        <!-- NOTICIA 1 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 1.jpg" alt="Noticia 1">
+            <div class="noticia-info">
+                <h2>Paseo familiar terminó en tragedia</h2>
+                <p>Hombre fue encontrado muerto en playa de San Jorge, Rivas.</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 1.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+        <!-- NOTICIA 2 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 2.0.jpg" alt="Noticia 2">
+            <div class="noticia-info">
+                <h2>Tragedia en el Sector del Zumen</h2>
+                <p>Mujer muere atropellada en Managua durante la noche.</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 2.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+        <!-- NOTICIA 3 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 3.jpg" alt="Noticia 3">
+            <div class="noticia-info">
+                <h2>Tragedia vial en El Crucero</h2>
+                <p>Furgón apaga una vida en carretera de Managua.</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 3.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+        <!-- NOTICIA 4 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 4.jpg" alt="Noticia 4">
+            <div class="noticia-info">
+                <h2>Accidente en carretera norte</h2>
+                <p>Dos personas resultan lesionadas tras fuerte impacto.</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 4.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+        <!-- NOTICIA 5 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 5.0.jpg" alt="Noticia 5">
+            <div class="noticia-info">
+                <h2>Reinauguración de estación de bomberos</h2>
+                <p>San Rafael del Sur reinaugura estación de bomberos Emilio Rizo Benavides .</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 5.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+        <!-- NOTICIA 6 -->
+        <div class="noticia-card">
+            <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.0.jpg" alt="Noticia 6">
+            <div class="noticia-info">
+                <h2>Aventura sobre Ruedas en Pochomil</h2>
+                <p>Intur y la alcaldia de San Rafael del Sur organizan actividad recreativa.</p>
+                <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Noticia 6.html" class="btn">Ver más</a>
+            </div>
+        </div>
+
+    </div>
+      
+</div>
+
+<script>
+function actualizarFechaHora(){
+    const f = new Date();
+
+    const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+    let h = f.getHours();
+    let m = f.getMinutes().toString().padStart(2,'0');
+    let s = f.getSeconds().toString().padStart(2,'0');
+
+    let ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    h = h ? h : 12;
+
+    document.getElementById("fechaHora").textContent =
+        `${dias[f.getDay()]}, ${f.getDate()} de ${meses[f.getMonth()]} de ${f.getFullYear()} - ${h}:${m}:${s} ${ampm}`;
+}
+
+setInterval(actualizarFechaHora, 1000);
+actualizarFechaHora();
+</script>
+
+</body>
+</html>

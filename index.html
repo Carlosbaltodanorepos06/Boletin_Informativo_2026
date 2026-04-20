@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Informativo</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0,80,40,0.7), rgba(0,80,40,0.7)),
+                    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644') center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 65px;
+        margin: 0;
+        animation: fadeDown 1.5s ease;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin: 10px 0;
+        animation: fadeUp 2s ease;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        animation: fadeIn 2.5s ease;
+    }
+
+    .btn {
+        padding: 15px 40px;
+        font-size: 18px;
+        background: #2E7D32;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        animation: fadeIn 3s ease;
+    }
+
+    .btn:hover {
+        background: #1B5E20;
+        transform: scale(1.08);
+    }
+
+    @keyframes fadeDown {
+        from {opacity:0; transform:translateY(-60px);}
+        to {opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes fadeUp {
+        from {opacity:0; transform:translateY(60px);}
+        to {opacity:1; transform:translateY(0);}
+    }
+
+    @keyframes fadeIn {
+        from {opacity:0;}
+        to {opacity:1;}
+    }
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>BIENVENIDOS</h1>
+    <h2>Boletín Informativo Comunitario</h2>
+    <p>
+        Noticias, eventos y novedades de tu comunidad y entorno estudiantil en un solo lugar.
+    </p>
+
+    <!-- BOTÓN QUE REDIRIGE -->
+    <button class="btn" onclick="entrar()">INGRESAR</button>
+</section>
+
+<script>
+    function entrar() {
+        window.location.href = "C:\\Users\\Carlos Baltodano\\Desktop\\CARPETA PARA ENTREGAR\\Panel de Control.html"; // ← aquí ponés el nombre de tu otro HTML
+    }
+</script>
+
+</body>
+</html>

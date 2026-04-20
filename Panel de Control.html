@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boletín Informativo</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #E8F5E9;
+    transition: 0.3s;
+}
+
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+/* HEADER ANIMADO */
+.header {
+    background: linear-gradient(270deg, #2E7D32, #66BB6A, #43A047);
+    background-size: 600% 600%;
+    animation: moverGradiente 8s ease infinite;
+    color: white;
+    padding: 25px;
+}
+
+@keyframes moverGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* TOP */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* FECHA + HORA UNIFICADA */
+.fecha {
+    font-family: Consolas, monospace;
+    font-size: 16px;
+}
+
+/* BOTONES */
+.menu-top {
+    display: flex;
+    gap: 8px;
+}
+
+.menu-top button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* CONTENIDO */
+.main {
+    padding: 20px;
+}
+
+/* TARJETAS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+body.dark .card {
+    background: #1e1e1e;
+}
+
+/* NOTICIAS */
+.news-item {
+    border-bottom: 1px solid #ccc;
+    padding: 12px 0;
+}
+
+.grande { font-size: 18px; }
+.peque { font-size: 13px; }
+
+.compacto .card {
+    padding: 10px;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    
+    <div class="top">
+        <div class="fecha" id="fechaHora"></div>
+
+        <div class="menu-top">
+            <button onclick="irNoticia('C:\\Users\\Carlos Baltodano\\Desktop\\CARPETA PARA ENTREGAR\\Modulo Noticias.html')">Ver más Noticias</button>
+            <button onclick="toggleDark()">🌙</button>
+            <button onclick="setTexto('grande')">A+</button>
+            <button onclick="setTexto('normal')">A</button>
+            <button onclick="setTexto('peque')">A-</button>
+            <button onclick="toggleCompacto()">📱</button>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+
+    <h2 id="saludo"></h2>
+
+    <!-- TARJETAS -->
+    <div class="cards">
+        <div class="card">
+            <h3>👥 Vistas Actualmente</h3>
+            <p id="usuarios"></p>
+        </div>
+
+        <div class="card">
+            <h3>📰 Noticias</h3>
+            <h1>10</h1>
+        </div>
+
+<div class="card">
+    <h3>🌡 Temperatura</h3>
+    <p id="temp"></p>
+</div>
+
+<script>
+// 🌡 TEMPERATURA DINÁMICA (30° a 35°)
+let tempActual = Math.floor(Math.random() * 6) + 30;
+
+function actualizarTemperatura(){
+    let cambio = Math.random();
+
+    if(cambio > 0.5){
+        // sube
+        tempActual += Math.floor(Math.random()*2)+1;
+    } else {
+        // baja
+        tempActual -= Math.floor(Math.random()*2)+1;
+    }
+
+    // límites 30 a 35
+    if(tempActual > 35) tempActual = 35;
+    if(tempActual < 30) tempActual = 30;
+
+    temp.textContent = tempActual + " °C";
+
+    let tiempo = Math.floor(Math.random()*10000)+10000; // 10–20s
+    setTimeout(actualizarTemperatura, tiempo);
+}
+
+// iniciar
+temp.textContent = tempActual + " °C";
+actualizarTemperatura();
+</script>
+    </div>
+
+    <!-- NOTICIAS -->
+    <div class="card" style="margin-top:20px;">
+        <h2>📰 Últimas Noticias</h2>
+
+        <div class="news-item">
+            <strong>Paseo familiar terminó en tragedia</strong>
+            <p>Hombre fue encontrado muerto en playa de San Jorge, Rivas...</p>
+            <button onclick="irNoticia('C:\\Users\\Carlos Baltodano\\Desktop\\CARPETA PARA ENTREGAR\\Noticia 1.html')">Ver más</button>
+        </div>
+
+        <div class="news-item">
+            <strong>Tragedia en el Sector del Zumen</strong>
+            <p>Mujer muere atropellada en Managua</p>
+            <button onclick="irNoticia('C:\\Users\\Carlos Baltodano\\Desktop\\CARPETA PARA ENTREGAR\\Noticia 2.html')">Ver más</button>
+        </div>
+
+        <div class="news-item">
+            <strong>Tragedia vial: Furgón apaga una vida en El Crucero, Managua </strong>
+            <p>Hombre muere atropellado por cisterna</p>
+            <button onclick="irNoticia('C:\\Users\\Carlos Baltodano\\Desktop\\CARPETA PARA ENTREGAR\\Noticia 3.html')">Ver más</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// FECHA + HORA JUNTAS
+function actualizarFechaHora(){
+    const f = new Date();
+
+    const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+    let h = f.getHours();
+    let m = f.getMinutes().toString().padStart(2,'0');
+    let s = f.getSeconds().toString().padStart(2,'0');
+
+    let ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    h = h ? h : 12;
+
+    let texto = `${dias[f.getDay()]}, ${f.getDate()} de ${meses[f.getMonth()]} de ${f.getFullYear()} - ${h}:${m}:${s} ${ampm}`;
+
+    fechaHora.textContent = texto;
+}
+setInterval(actualizarFechaHora,1000);
+actualizarFechaHora();
+
+// SALUDO
+function saludoHora(){
+    let h = new Date().getHours();
+    saludo.textContent =
+        h < 12 ? "Buenos días ☀️" :
+        h < 18 ? "Buenas tardes 🌤" :
+        "Buenas noches 🌙";
+}
+saludoHora();
+
+/// USUARIOS DINÁMICOS REALISTAS 🔥
+let usuariosBase = Math.floor(Math.random()*50)+50; // inicio entre 50–100
+const minimoUsuarios = 30; // nunca baja de aquí
+
+usuarios.textContent = usuariosBase;
+
+function actualizarUsuarios(){
+    let probabilidad = Math.random();
+
+    if(probabilidad > 0.3){
+        // 🔼 SUBE (70% de probabilidad)
+        let aumento = Math.floor(Math.random()*5)+1;
+        usuariosBase += aumento;
+    } else {
+        // 🔽 BAJA (30% de probabilidad)
+        let bajada = Math.floor(Math.random()*3)+1;
+        usuariosBase -= bajada;
+
+        // evitar que baje demasiado
+        if(usuariosBase < minimoUsuarios){
+            usuariosBase = minimoUsuarios;
+        }
+    }
+
+    usuarios.textContent = usuariosBase;
+
+    let tiempo = Math.floor(Math.random()*10000)+10000; // 10–20s
+    setTimeout(actualizarUsuarios, tiempo);
+}
+
+actualizarUsuarios();
+
+// MODO OSCURO
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+// TEXTO
+function setTexto(size){
+    document.body.classList.remove("grande","peque");
+    if(size==="grande") document.body.classList.add("grande");
+    if(size==="peque") document.body.classList.add("peque");
+}
+
+// COMPACTO
+function toggleCompacto(){
+    document.body.classList.toggle("compacto");
+}
+
+// IR NOTICIA
+function irNoticia(url){
+    window.location.href = url;
+}
+</script>
+
+</body>
+</html>

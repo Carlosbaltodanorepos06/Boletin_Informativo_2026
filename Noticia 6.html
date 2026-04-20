@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticia</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #E8F5E9;
+    transition: 0.3s;
+}
+
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(270deg, #2E7D32, #66BB6A, #43A047);
+    background-size: 600% 600%;
+    animation: moverGradiente 8s ease infinite;
+    color: white;
+    padding: 25px;
+}
+
+@keyframes moverGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fecha {
+    font-family: Consolas, monospace;
+}
+
+.menu-top {
+    display: flex;
+    gap: 8px;
+}
+
+.menu-top button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* CONTENIDO */
+.main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* 🔥 SLIDER CORREGIDO */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 350px; /* altura fija */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* evita deformación */
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.slider img.activa {
+    display: block;
+}
+
+/* TITULO */
+.titulo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* TEXTO */
+.contenido {
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* BOTON */
+.volver {
+    margin-top: 20px;
+    display: inline-block;
+    background: #2E7D32;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="top">
+        <div class="fecha" id="fechaHora"></div>
+
+        <div class="menu-top">
+            <button onclick="toggleDark()">🌙</button>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+
+    <!-- 🔥 SLIDER -->
+    <div class="slider">
+        <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.0.jpg" class="activa">
+        <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.1.jpg">
+        <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.2.jpg">
+        <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.3.jpg">
+        <img src="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\IMAGENES\NOTICIA 6.4.jpg">
+    </div>
+
+    <!-- TITULO -->
+    <div class="titulo">
+        AVENTURA SOBRE RUEDAS EN POCHOMIL
+    </div>
+
+    <!-- TEXTO -->
+    <div class="contenido">
+Así se vivió la “Aventura sobre Ruedas” en Pochomil, una actividad recreativa y turística organizada por el INTUR Managua en coordinación con la Alcaldía de San Rafael del Sur, que reunió a familias, visitantes y amantes de la adrenalina en un ambiente lleno de diversión y alegría en la costa del Pacífico.<br>
+<br>
+Durante la jornada, los participantes disfrutaron de recorridos, exhibiciones y dinámicas sobre ruedas, en un entorno natural privilegiado como lo es Pochomil, promoviendo el turismo interno, la sana recreación y el aprovechamiento de los espacios turísticos del municipio.
+<br>
+La actividad también permitió dinamizar la economía local, beneficiando a emprendedores, comerciantes y negocios de la zona, quienes ofrecieron servicios y productos a los asistentes.        <br><br>
+
+    </div>
+
+    <a href="C:\Users\Carlos Baltodano\Desktop\CARPETA PARA ENTREGAR\Panel de Control.html" class="volver">⬅ Volver</a>
+
+</div>
+
+<script>
+// FECHA + HORA
+function actualizarFechaHora(){
+    const f = new Date();
+
+    const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+    let h = f.getHours();
+    let m = f.getMinutes().toString().padStart(2,'0');
+    let s = f.getSeconds().toString().padStart(2,'0');
+
+    let ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    h = h ? h : 12;
+
+    document.getElementById("fechaHora").textContent =
+        `${dias[f.getDay()]}, ${f.getDate()} de ${meses[f.getMonth()]} de ${f.getFullYear()} - ${h}:${m}:${s} ${ampm}`;
+}
+setInterval(actualizarFechaHora,1000);
+actualizarFechaHora();
+
+// 🌙 DARK MODE
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+// 🔥 SLIDER AUTOMÁTICO
+let index = 0;
+const imagenes = document.querySelectorAll(".slider img");
+
+function cambiarImagen(){
+    imagenes[index].classList.remove("activa");
+
+    index++;
+    if(index >= imagenes.length){
+        index = 0;
+    }
+
+    imagenes[index].classList.add("activa");
+}
+
+// cambia cada 3 segundos
+setInterval(cambiarImagen, 3000);
+</script>
+
+</body>
+</html>
