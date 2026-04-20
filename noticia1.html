@@ -56,7 +56,35 @@ body.dark {
     cursor: pointer;
     border-radius: 5px;
 }
+/* 🔥 SLIDER CORREGIDO */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 350px; /* altura fija */
+    overflow: hidden;
+    border-radius: 10px;
+}
 
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* evita deformación */
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.slider img.activa {
+    display: block;
+}
+
+/* TITULO */
+.titulo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 15px;
+}
 /* CONTENIDO */
 .main {
     padding: 20px;
